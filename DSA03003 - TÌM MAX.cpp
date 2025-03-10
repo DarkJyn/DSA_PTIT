@@ -12,25 +12,17 @@ signed main(){
     ll t;
     cin >> t;
     while(t--){
-        string a,b;
-        cin >> a >> b;
-        int asize = a.size();
-        int bsize = b.size();
-        a = " " + a;
-        b = " " + b;
-        int dp[asize + 2][bsize + 2];
-        memset(dp,0,sizeof(dp));
-        for(int i = 1;i <= asize;++i){
-            for(int j = 1;j <= bsize;++j){
-                if(a[i] == b[j]){
-                    dp[i][j] = max(dp[i][j],dp[i-1][j-1] + 1);
-                }
-                else{
-                    dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
-                }
-            }
+        ll n;
+        cin >> n;
+        ll a[n];
+        for(ll i = 0;i  < n;++i) cin >> a[i];
+        sort(a,a + n);
+        ll sum = 0;
+        for(ll i = 0;i < n;++i){
+            sum += (a[i] * i) % MOD;
+            sum %= MOD;
         }
-        cout << dp[asize][bsize] <<"\n";
+        cout << sum<<"\n";
     }
 }
 /* Dean

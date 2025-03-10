@@ -9,29 +9,13 @@ using ll = long long;
 
 signed main(){
     cin.tie(nullptr)->sync_with_stdio(false);
-    ll t;
-    cin >> t;
-    while(t--){
-        string a,b;
-        cin >> a >> b;
-        int asize = a.size();
-        int bsize = b.size();
-        a = " " + a;
-        b = " " + b;
-        int dp[asize + 2][bsize + 2];
-        memset(dp,0,sizeof(dp));
-        for(int i = 1;i <= asize;++i){
-            for(int j = 1;j <= bsize;++j){
-                if(a[i] == b[j]){
-                    dp[i][j] = max(dp[i][j],dp[i-1][j-1] + 1);
-                }
-                else{
-                    dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
-                }
-            }
-        }
-        cout << dp[asize][bsize] <<"\n";
-    }
+    vector<string> a1 = {"02", "20", "22"};
+    vector<string> a2 = {"02"};
+    vector<string> a3 = {"2000", "2002", "2020", "2022", "2200", "2202", "2220", "2222"};
+    for (int i = 0; i < a1.size(); i++)
+        for (int j = 0; j < a2.size(); j++)
+            for (int k = 0; k < a3.size(); k++)
+                cout << a1[i] + "/" + a2[j] + "/" + a3[k] << endl;
 }
 /* Dean
                   __------__
