@@ -7,23 +7,26 @@ using ll = long long;
 #define MOD 1000000007
 #define endl "\n"
 
-ll sqr(ll a){
-    return (a*a) % MOD;
-}
-ll poww(ll a, int n){
-    if(n == 0)  return 1;
-    if(n%2 == 0)    return sqr(poww(a, n/2));
-    return (a*sqr(poww(a, n/2))) % MOD;
-}
-
 signed main(){
     cin.tie(nullptr)->sync_with_stdio(false);
-    int t;
+    ll t;
     cin >> t;
     while(t--){
-        int n,k;
-        cin >> n >> k;
-        cout << poww(n,k) <<"\n";
+        int n;
+		cin >> n;
+		ll a[n] = {}, b[n];
+		for (int i = 0; i < min(n, 3); i++)	a[i] = 1;
+		b[0] = 1;
+		for (int i = 1; i < n; i++){
+			if (i <= 3){
+                a[i] = (a[i] + b[i - 1]);
+            }
+			else{    
+                a[i] += b[i - 1] - b[i - 4];
+            }
+			b[i] = b[i - 1] + a[i];
+		}
+		cout << a[n - 1] << endl;
     }
 }
 /* Dean

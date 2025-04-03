@@ -7,13 +7,11 @@ using ll = long long;
 #define MOD 1000000007
 #define endl "\n"
 
-ll sqr(ll a){
-    return (a*a) % MOD;
-}
-ll poww(ll a, int n){
-    if(n == 0)  return 1;
-    if(n%2 == 0)    return sqr(poww(a, n/2));
-    return (a*sqr(poww(a, n/2))) % MOD;
+long long poww(long long n, long long k){
+    if (k == 0) return 1;
+    long long x = poww(n, k / 2);
+    if (k % 2 == 0) return (x * x) % MOD;
+    else return (((x * x) % MOD) * n) % MOD;
 }
 
 signed main(){
@@ -21,8 +19,14 @@ signed main(){
     int t;
     cin >> t;
     while(t--){
-        int n,k;
-        cin >> n >> k;
+        ll n;
+        cin >> n;
+        ll m = n;
+        ll k = 0;
+        while(m != 0){
+            k = k * 10 + m % 10;
+            m /=10;
+        }
         cout << poww(n,k) <<"\n";
     }
 }
